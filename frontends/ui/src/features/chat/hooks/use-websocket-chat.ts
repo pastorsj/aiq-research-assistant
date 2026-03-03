@@ -34,7 +34,7 @@ import { checkBackendHealthCached, invalidateHealthCache } from '@/shared/hooks/
 import { useChatStore } from '../store'
 import { useConnectionRecovery } from './use-connection-recovery'
 import { useLayoutStore } from '@/features/layout/store'
-import { WEB_SEARCH_SOURCE_ID } from '@/features/layout/data-sources'
+import { doesDataSourceNeedAuthentication } from '@/features/layout/data-sources'
 import { useDocumentsStore } from '@/features/documents/store'
 import { useAuth } from '@/adapters/auth'
 import type {
@@ -570,7 +570,7 @@ export const useWebSocketChat = (options: UseWebSocketChatOptions = {}): UseWebS
       // Filter out authenticated sources if user doesn't have a valid idToken
       if (!idToken) {
         enabledDataSources = enabledDataSources.filter(
-          (sourceId) => sourceId === WEB_SEARCH_SOURCE_ID
+          (id) => !doesDataSourceNeedAuthentication(id)
         )
       }
 

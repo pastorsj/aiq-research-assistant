@@ -107,6 +107,18 @@ functions:
     top_k: 5
     chroma_dir: ${AIQ_CHROMA_DIR:-/tmp/chroma_data}
 
+  # Enterprise Knowledge Search (pre-populated collections, no ingestion required)
+  # Populate collections with: uv run python scripts/populate_collection.py <dir> <collection_name>
+  enterprise_knowledge_search:
+    _type: enterprise_knowledge_search
+    backend: llamaindex
+    collections:
+      - name: cybersecurity
+        description: "Cybersecurity standards and frameworks including NIST SP 800-53, NIST CSF, ISO 27001, and GDPR"
+    top_k: 5
+    per_collection_top_k: 10
+    chroma_dir: ${AIQ_CHROMA_DIR:-/tmp/chroma_data}
+
   # Paper Search (optional - requires SERPER_API_KEY)
   # Uncomment the block below and set SERPER_API_KEY to enable academic paper search.
   # paper_search_tool:
@@ -122,6 +134,7 @@ functions:
       - web_search_tool
       # - paper_search_tool  # Uncomment if SERPER_API_KEY is set
       - knowledge_search
+      - enterprise_knowledge_search
 
   clarifier_agent:
     _type: clarifier_agent
@@ -130,6 +143,7 @@ functions:
     tools:
       - web_search_tool
       - knowledge_search
+      - enterprise_knowledge_search
     max_turns: 3
     enable_plan_approval: true
     log_response_max_chars: 2000
@@ -142,6 +156,7 @@ functions:
     tools:
       - web_search_tool
       - knowledge_search
+      - enterprise_knowledge_search
     max_llm_turns: 10
     max_tool_iterations: 5
 
@@ -154,6 +169,7 @@ functions:
       # - paper_search_tool  # Uncomment if SERPER_API_KEY is set
       - advanced_web_search_tool
       - knowledge_search
+      - enterprise_knowledge_search
   
 
 workflow:

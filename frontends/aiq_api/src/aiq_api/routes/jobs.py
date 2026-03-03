@@ -211,13 +211,26 @@ async def register_job_routes(app: FastAPI, builder: WorkflowBuilder, worker: Fa
 
         tool_names = _collect_tool_names(builder)
 
-        knowledge_configured = any("knowledge" in name.lower() or name == "knowledge_search" for name in tool_names)
+        knowledge_configured = any(
+            ("knowledge" in name.lower() or name == "knowledge_search") and "enterprise" not in name.lower()
+            for name in tool_names
+        )
         if knowledge_configured:
             data_sources.append(
                 DataSource(
                     id="knowledge_layer",
                     name="Knowledge Base",
                     description="Search uploaded documents and files.",
+                )
+            )
+
+        enterprise_configured = any("enterprise" in name.lower() and "knowledge" in name.lower() for name in tool_names)
+        if enterprise_configured:
+            data_sources.append(
+                DataSource(
+                    id="enterprise_knowledge",
+                    name="Enterprise Knowledge",
+                    description="Search pre-indexed enterprise document collections.",
                 )
             )
 

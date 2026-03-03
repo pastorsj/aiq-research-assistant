@@ -19,7 +19,7 @@ import type {
   ThemeMode,
 } from './types'
 import { createDataSourcesClient, type DataSourceFromAPI } from '@/adapters/api'
-import { WEB_SEARCH_SOURCE_ID } from './data-sources'
+import { doesDataSourceNeedAuthentication } from './data-sources'
 
 const initialState: LayoutState = {
   isSessionsPanelOpen: false,
@@ -90,9 +90,9 @@ export const useLayoutStore = create<LayoutStore>()(
           const response = await client.getDataSources()
 
           // data_sources is already filtered (knowledge_layer removed) by the client
-          // Only enable web_search by default - user must manually enable other sources
+          // Enable no-auth sources by default - user must manually enable auth-required sources
           const enabledIds = response.data_sources
-            .filter((source) => source.id === WEB_SEARCH_SOURCE_ID)
+            .filter((source) => !doesDataSourceNeedAuthentication(source.id))
             .map((source) => source.id)
 
           set(
@@ -123,7 +123,7 @@ export const useLayoutStore = create<LayoutStore>()(
         set(
           (state) => ({
             enabledDataSourceIds: state.enabledDataSourceIds.filter(
-              (id) => id === WEB_SEARCH_SOURCE_ID
+              (id) => !doesDataSourceNeedAuthentication(id)
             ),
           }),
           false,
