@@ -2,31 +2,20 @@
 
 Search pre-existing vector database collections without uploading or ingesting files through the application. This tool connects to collections that are populated and managed by an external pipeline (or by the included `populate_collection.py` script) and exposes them as a searchable data source to the research agents.
 
-## How It Works
+## Architecture
 
-```
-External Pipeline ──▶ Vector DB (ChromaDB / Milvus)
-                              │
-                    enterprise_knowledge_search
-                              │
-                    ┌─────────┴─────────┐
-                    │  Collection A     │  Collection B ...
-                    └─────────┬─────────┘
-                         Retriever Adapter
-                    (LlamaIndex or Foundational RAG)
-                              │
-                    Merge by relevance score ──▶ Agent
-```
+![Enterprise Knowledge Search Architecture](architecture.svg)
 
-The tool reuses the existing knowledge layer retriever adapters (`LlamaIndexRetriever`, `FoundationalRagRetriever`) but **does not** initialize an ingestor, manage sessions, or require file uploads. It is retrieval-only.
+**How it works:**
 
-When the agent calls the tool:
-1. All configured collections are queried concurrently.
-2. Results are merged and ranked by relevance score.
-3. The top-K results (across all collections) are formatted and returned to the agent.
-4. If one collection fails, results from the others are still returned.
+1. An external pipeline (or `populate_collection.py`) chunks and embeds documents into a vector database (ChromaDB or Milvus).
+2. The enterprise knowledge search tool connects to those pre-populated collections via a retriever adapter (LlamaIndex or Foundational RAG).
+3. When the agent calls the tool, all configured collections are queried concurrently via `asyncio.gather()`.
+4. Results are merged, sorted by relevance score, and the top-K are formatted with citations and returned to the agent.
+5. If one collection fails, results from the others are still returned.
+6. The UI Data Sources panel controls tool availability — enterprise knowledge is enabled by default and does not require authentication.
 
-The agent can also target a specific collection by name if the query is domain-specific.
+The tool registers as a NAT plugin and yields a `FunctionInfo` that all agents (intent classifier, clarifier, shallow research, deep research) can call.
 
 ## Setup
 
@@ -129,14 +118,14 @@ Each document node stored in ChromaDB has an embedding, text content, and a meta
 
 ```
 ChromaDB Node
-├── id:        "node_abc123"              (auto-generated or provided)
-├── embedding: [0.012, -0.034, ...]       (NVIDIA embedding vector)
-├── document:  "The NIST Cybersecurity…"  (chunk text content)
-└── metadata:  {                          (key-value pairs — this is what matters)
-      "file_name":    "nist_sp_800-53.pdf",
-      "page_label":   "42",
-      "content_type": "text"
-    }
+  id:        "node_abc123"              (auto-generated or provided)
+  embedding: [0.012, -0.034, ...]       (NVIDIA embedding vector)
+  document:  "The NIST Cybersecurity..." (chunk text content)
+  metadata:  {                          (key-value pairs)
+    "file_name":    "nist_sp_800-53.pdf",
+    "page_label":   "42",
+    "content_type": "text"
+  }
 ```
 
 #### Required metadata fields
@@ -253,7 +242,7 @@ For the Foundational RAG backend, the RAG server's `/search` endpoint returns re
 | `page_number` | int | No | `None` | Page reference. Can also be in `metadata.page_number` or `metadata.content_metadata.page_number` |
 | `chunk_id` | string | No | Auto-generated | Unique chunk identifier |
 
-The adapter automatically strips temporary file prefixes (e.g., `tmp8a3b1c2d_report.pdf` → `report.pdf`) from `document_name` for display.
+The adapter automatically strips temporary file prefixes (e.g., `tmp8a3b1c2d_report.pdf` -> `report.pdf`) from `document_name` for display.
 
 ## Configuration Reference
 
@@ -288,7 +277,21 @@ The backend reports it as a distinct data source via `GET /v1/data_sources`:
 
 The `data_sources` field sent from the UI in WebSocket messages controls which tools the agent can use. When `enterprise_knowledge` is included, the `enterprise_knowledge_search` tool is available. When it is not, the tool is filtered out. This filtering happens in `src/aiq_agent/common/data_sources.py`.
 
-## Files Changed
+## Testing
+
+Run the enterprise knowledge search tests:
+
+```bash
+uv run pytest sources/enterprise_knowledge_search/tests/ -v
+```
+
+Run the full test suite:
+
+```bash
+uv run pytest
+```
+
+## Files
 
 ### New files
 
@@ -297,7 +300,6 @@ The `data_sources` field sent from the UI in WebSocket messages controls which t
 | `sources/enterprise_knowledge_search/pyproject.toml` | Package definition with NAT plugin entry point |
 | `sources/enterprise_knowledge_search/src/__init__.py` | Package exports |
 | `sources/enterprise_knowledge_search/src/register.py` | Tool implementation: config, retriever setup, search logic, result formatting |
-| `sources/enterprise_knowledge_search/tests/__init__.py` | Test package |
 | `sources/enterprise_knowledge_search/tests/test_register.py` | 22 unit tests covering config validation, result formatting, search logic, and data source filtering |
 | `scripts/populate_collection.py` | CLI script to populate collections from a directory of documents |
 
@@ -315,20 +317,6 @@ The `data_sources` field sent from the UI in WebSocket messages controls which t
 | `frontends/ui/src/features/layout/components/DataSourcesPanel.tsx` | Updated auth gating to allow enterprise knowledge without authentication |
 | `frontends/ui/src/features/chat/store.ts` | Updated `getDefaultEnabledDataSourceIds` to include enterprise knowledge |
 | `frontends/ui/src/features/chat/hooks/use-websocket-chat.ts` | Updated send-time filter to include enterprise knowledge without auth token |
-
-## Testing
-
-Run the enterprise knowledge search tests:
-
-```bash
-uv run pytest sources/enterprise_knowledge_search/tests/ -v
-```
-
-Run the full test suite:
-
-```bash
-uv run pytest
-```
 
 ## Adding a New No-Auth Data Source
 

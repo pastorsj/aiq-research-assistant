@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333"/>
+    </marker>
+    <filter id="sh" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="780" fill="white"/>
+
+  <!-- TITLE -->
+  <text x="490" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#1a1a1a">NVIDIA AI-Q 2.0 Architecture</text>
+  <text x="490" y="60" text-anchor="middle" font-size="14" font-weight="600" fill="#76b900">With Enterprise Knowledge Search</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- RETURN ARROWS (top) -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <path d="M 940 155 L 940 100 L 105 100 L 105 158" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="520" y="94" text-anchor="middle" font-size="10" font-weight="600" fill="#333">Deep Research Report</text>
+
+  <path d="M 720 175 L 720 114 L 118 114 L 118 158" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="420" y="110" text-anchor="middle" font-size="10" font-weight="600" fill="#333">Clarifying Questions and Responses</text>
+
+  <path d="M 380 175 L 380 128 L 130 128 L 130 158" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="255" y="138" text-anchor="middle" font-size="10" font-weight="600" fill="#333">Short Answer</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- AGENT / USER -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <circle cx="70" cy="200" r="35" fill="#76b900" opacity="0.15" stroke="#76b900" stroke-width="2"/>
+  <circle cx="70" cy="188" r="8" fill="#76b900"/>
+  <path d="M 54 216 Q 54 200 70 200 Q 86 200 86 216" fill="#76b900"/>
+  <text x="70" y="248" text-anchor="middle" font-size="11" font-weight="600" fill="#333">Agent/User</text>
+
+  <!-- Query / Response -->
+  <line x1="105" y1="192" x2="162" y2="192" stroke="#333" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="134" y="186" text-anchor="middle" font-size="9" fill="#333">Query</text>
+  <line x1="162" y1="212" x2="108" y2="212" stroke="#333" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="134" y="226" text-anchor="middle" font-size="9" fill="#333">Chat Response</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- CHAT AND ROUTING -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <rect x="168" y="175" width="120" height="55" rx="8" fill="white" stroke="#76b900" stroke-width="2" filter="url(#sh)"/>
+  <circle cx="190" cy="195" r="8" fill="#d4a017" opacity="0.3"/>
+  <text x="190" y="198" text-anchor="middle" font-size="10" fill="#d4a017">&#9881;</text>
+  <text x="240" y="200" text-anchor="middle" font-size="11" font-weight="600" fill="#333">Chat and</text>
+  <text x="240" y="214" text-anchor="middle" font-size="11" font-weight="600" fill="#333">Routing</text>
+
+  <!-- Shallow arrow -->
+  <line x1="288" y1="202" x2="338" y2="202" stroke="#333" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="313" y="195" text-anchor="middle" font-size="9" font-weight="600" fill="#76b900">Shallow</text>
+
+  <!-- Deep arrow (straight drop to Data Source Tools) -->
+  <line x1="228" y1="230" x2="228" y2="353" stroke="#333" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="240" y="295" font-size="9" font-weight="600" fill="#76b900">Deep</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SHALLOW RESEARCH -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <rect x="344" y="175" width="130" height="55" rx="8" fill="white" stroke="#76b900" stroke-width="2" filter="url(#sh)"/>
+  <circle cx="365" cy="195" r="8" fill="#76b900" opacity="0.2"/>
+  <text x="365" y="198" text-anchor="middle" font-size="9" fill="#76b900">&#9741;</text>
+  <text x="420" y="200" text-anchor="middle" font-size="11" font-weight="600" fill="#333">Shallow</text>
+  <text x="420" y="214" text-anchor="middle" font-size="11" font-weight="600" fill="#333">Research</text>
+
+  <!-- Arrow down to Data Source Tools -->
+  <line x1="409" y1="230" x2="409" y2="353" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Arrow to Escalation -->
+  <line x1="474" y1="202" x2="528" y2="202" stroke="#333" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- ESCALATION -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <rect x="534" y="180" width="100" height="44" rx="22" fill="#d4a017" opacity="0.2" stroke="#d4a017" stroke-width="1.5"/>
+  <circle cx="558" cy="200" r="7" fill="#d4a017" opacity="0.3"/>
+  <text x="558" y="203" text-anchor="middle" font-size="8" fill="#d4a017">&#9881;</text>
+  <text x="597" y="207" text-anchor="middle" font-size="10" font-weight="600" fill="#333">Escalation</text>
+
+  <!-- No (back up) -->
+  <text x="584" y="175" text-anchor="middle" font-size="9" font-weight="600" fill="#c62828">No</text>
+  <path d="M 584 180 L 584 158 L 409 158 L 409 175" fill="none" stroke="#333" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Yes (right) -->
+  <line x1="634" y1="202" x2="685" y2="202" stroke="#333" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="660" y="195" text-anchor="middle" font-size="9" font-weight="600" fill="#2e7d32">Yes</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- HITL CLARIFICATION AND PLANNING -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <rect x="691" y="175" width="150" height="55" rx="8" fill="white" stroke="#76b900" stroke-width="2" filter="url(#sh)"/>
+  <circle cx="713" cy="195" r="8" fill="#76b900" opacity="0.2"/>
+  <text x="713" y="198" text-anchor="middle" font-size="9" fill="#76b900">&#9741;</text>
+  <text x="778" y="198" text-anchor="middle" font-size="10" font-weight="600" fill="#333">HITL Clarification</text>
+  <text x="778" y="212" text-anchor="middle" font-size="10" font-weight="600" fill="#333">and Planning</text>
+
+  <!-- Arrow to Orchestrator -->
+  <line x1="841" y1="202" x2="890" y2="202" stroke="#333" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- AUTONOMOUS DEEP RESEARCHER -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <rect x="880" y="120" width="300" height="230" rx="10" fill="white" stroke="#76b900" stroke-width="1.5" stroke-dasharray="6,3" filter="url(#sh)"/>
+  <text x="1030" y="142" text-anchor="middle" font-size="12" font-weight="700" fill="#76b900">Autonomous Deep Researcher</text>
+
+  <!-- Orchestrator -->
+  <rect x="900" y="180" width="115" height="45" rx="8" fill="white" stroke="#76b900" stroke-width="1.5"/>
+  <circle cx="920" cy="198" r="7" fill="#76b900" opacity="0.2"/>
+  <text x="920" y="201" text-anchor="middle" font-size="8" fill="#76b900">&#9741;</text>
+  <text x="968" y="207" text-anchor="middle" font-size="10" font-weight="600" fill="#333">Orchestrator</text>
+
+  <line x1="957" y1="225" x2="957" y2="248" stroke="#333" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- Sub-Agent Researchers -->
+  <rect x="900" y="253" width="115" height="35" rx="6" fill="white" stroke="#76b900" stroke-width="1.3"/>
+  <text x="957" y="275" text-anchor="middle" font-size="9" font-weight="600" fill="#333">Sub-Agent Researchers</text>
+
+  <line x1="957" y1="288" x2="957" y2="305" stroke="#333" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- Sub-Agent Planners -->
+  <rect x="900" y="310" width="115" height="35" rx="6" fill="white" stroke="#76b900" stroke-width="1.3"/>
+  <text x="957" y="332" text-anchor="middle" font-size="9" font-weight="600" fill="#333">Sub-Agent Planners</text>
+
+  <!-- Arrow from researchers to file system -->
+  <line x1="1015" y1="270" x2="1040" y2="270" stroke="#333" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Shared Virtual File System -->
+  <rect x="1045" y="250" width="120" height="90" rx="6" fill="white" stroke="#333" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="1105" y="268" text-anchor="middle" font-size="9" font-weight="600" fill="#333">Shared Virtual</text>
+  <text x="1105" y="280" text-anchor="middle" font-size="9" font-weight="600" fill="#333">File System</text>
+  <rect x="1058" y="292" width="42" height="32" rx="3" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+  <text x="1079" y="312" text-anchor="middle" font-size="8" fill="#666">Files</text>
+  <rect x="1108" y="292" width="42" height="32" rx="3" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+  <text x="1129" y="312" text-anchor="middle" font-size="8" fill="#666">ToDo</text>
+
+  <!-- Arrow from Deep Researcher into right side of Data Source Tools -->
+  <path d="M 957 345 L 957 410 L 892 410" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- DATA SOURCE TOOLS -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <rect x="170" y="355" width="720" height="115" rx="10" fill="white" stroke="#76b900" stroke-width="2" filter="url(#sh)"/>
+  <text x="510" y="379" text-anchor="middle" font-size="13" font-weight="700" fill="#333">Data Source Tools</text>
+
+  <!-- Web Search -->
+  <rect x="200" y="392" width="160" height="55" rx="8" fill="#d4a017" opacity="0.2" stroke="#d4a017" stroke-width="1"/>
+  <text x="280" y="416" text-anchor="middle" font-size="12" font-weight="600" fill="#333">Web Search</text>
+  <text x="280" y="432" text-anchor="middle" font-size="9" fill="#666">Tavily API</text>
+
+  <!-- Academic Papers -->
+  <rect x="385" y="392" width="160" height="55" rx="8" fill="#d4a017" opacity="0.2" stroke="#d4a017" stroke-width="1"/>
+  <text x="465" y="416" text-anchor="middle" font-size="12" font-weight="600" fill="#333">Academic Papers</text>
+  <text x="465" y="432" text-anchor="middle" font-size="9" fill="#666">Serper API</text>
+
+  <!-- Enterprise Knowledge (highlighted) -->
+  <rect x="570" y="392" width="250" height="55" rx="8" fill="#76b900" opacity="0.12" stroke="#76b900" stroke-width="2"/>
+  <text x="695" y="416" text-anchor="middle" font-size="12" font-weight="700" fill="#333">Enterprise Knowledge</text>
+  <text x="695" y="432" text-anchor="middle" font-size="9" fill="#555">Pre-populated Vector DB</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- RAG KNOWLEDGE LAYER -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Arrow from RAG up to Enterprise Knowledge -->
+  <line x1="695" y1="515" x2="695" y2="449" stroke="#333" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <rect x="110" y="515" width="830" height="140" rx="10" fill="white" stroke="#76b900" stroke-width="2" filter="url(#sh)"/>
+  <text x="525" y="540" text-anchor="middle" font-size="13" font-weight="700" fill="#333">RAG Knowledge Layer</text>
+
+  <!-- Extraction -->
+  <rect x="135" y="555" width="120" height="70" rx="6" fill="#76b900" opacity="0.08" stroke="#76b900" stroke-width="1"/>
+  <text x="195" y="585" text-anchor="middle" font-size="10" font-weight="600" fill="#333">Extraction</text>
+  <text x="195" y="600" text-anchor="middle" font-size="8" fill="#666">NeMo Retriever</text>
+  <line x1="255" y1="590" x2="278" y2="590" stroke="#333" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- Embedding -->
+  <rect x="283" y="555" width="120" height="70" rx="6" fill="#76b900" opacity="0.08" stroke="#76b900" stroke-width="1"/>
+  <text x="343" y="585" text-anchor="middle" font-size="10" font-weight="600" fill="#333">Embedding</text>
+  <text x="343" y="600" text-anchor="middle" font-size="8" fill="#666">NeMo Retriever</text>
+  <line x1="403" y1="590" x2="426" y2="590" stroke="#333" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- Vector Database -->
+  <rect x="431" y="555" width="130" height="70" rx="6" fill="#76b900" opacity="0.08" stroke="#76b900" stroke-width="1"/>
+  <text x="496" y="585" text-anchor="middle" font-size="10" font-weight="600" fill="#333">Vector Database</text>
+  <text x="496" y="600" text-anchor="middle" font-size="8" fill="#666">NVIDIA cuVS</text>
+  <line x1="561" y1="590" x2="584" y2="590" stroke="#333" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- Reranking -->
+  <rect x="589" y="555" width="120" height="70" rx="6" fill="#76b900" opacity="0.08" stroke="#76b900" stroke-width="1"/>
+  <text x="649" y="585" text-anchor="middle" font-size="10" font-weight="600" fill="#333">Reranking</text>
+  <text x="649" y="600" text-anchor="middle" font-size="8" fill="#666">NeMo Retriever</text>
+  <line x1="709" y1="590" x2="732" y2="590" stroke="#333" stroke-width="1.3" marker-end="url(#arr)"/>
+
+  <!-- Generate -->
+  <rect x="737" y="555" width="130" height="70" rx="6" fill="#76b900" opacity="0.08" stroke="#76b900" stroke-width="1"/>
+  <text x="802" y="585" text-anchor="middle" font-size="10" font-weight="600" fill="#333">Generate</text>
+  <text x="802" y="600" text-anchor="middle" font-size="8" fill="#666">Nemotron-3-Nano</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- KEY CALLOUTS -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <rect x="110" y="685" width="195" height="48" rx="6" fill="#76b900" opacity="0.06"/>
+  <text x="207" y="706" text-anchor="middle" font-size="11" font-weight="700" fill="#76b900">No File Upload Required</text>
+  <text x="207" y="721" text-anchor="middle" font-size="9" fill="#666">Collections pre-populated externally</text>
+
+  <rect x="325" y="685" width="195" height="48" rx="6" fill="#76b900" opacity="0.06"/>
+  <text x="422" y="706" text-anchor="middle" font-size="11" font-weight="700" fill="#76b900">No Auth Required</text>
+  <text x="422" y="721" text-anchor="middle" font-size="9" fill="#666">Available to all users by default</text>
+
+  <rect x="540" y="685" width="195" height="48" rx="6" fill="#76b900" opacity="0.06"/>
+  <text x="637" y="706" text-anchor="middle" font-size="11" font-weight="700" fill="#76b900">Concurrent Queries</text>
+  <text x="637" y="721" text-anchor="middle" font-size="9" fill="#666">All collections searched in parallel</text>
+
+  <rect x="755" y="685" width="195" height="48" rx="6" fill="#76b900" opacity="0.06"/>
+  <text x="852" y="706" text-anchor="middle" font-size="11" font-weight="700" fill="#76b900">Fault Tolerant</text>
+  <text x="852" y="721" text-anchor="middle" font-size="9" fill="#666">Failed collections don't block results</text>
+
+  <!-- Footer -->
+  <text x="600" y="768" text-anchor="middle" font-size="9" fill="#ccc">NVIDIA AI-Q Research Assistant v2.0</text>
+
+</svg>

@@ -97,6 +97,18 @@ functions:
     ingest_url: ${RAG_INGEST_URL:-http://localhost:8082}
     timeout: 300
 
+  # Enterprise Knowledge Search (pre-populated collections, no ingestion required)
+  # Populate collections with: uv run python scripts/populate_collection.py <dir> <collection_name> --backend foundational_rag
+  enterprise_knowledge_search:
+    _type: enterprise_knowledge_search
+    backend: foundational_rag
+    collections:
+      - name: cybersecurity
+        description: "Cybersecurity standards and frameworks including NIST SP 800-53, NIST CSF, ISO 27001, and GDPR"
+    top_k: 5
+    per_collection_top_k: 10
+    rag_url: ${RAG_SERVER_URL:-http://localhost:8081}
+
   paper_search_tool:
     _type: paper_search
     max_results: 5
@@ -109,6 +121,7 @@ functions:
       - web_search_tool
       - paper_search_tool
       - knowledge_search
+      - enterprise_knowledge_search
 
   clarifier_agent:
     _type: clarifier_agent
@@ -117,6 +130,7 @@ functions:
     tools:
       - web_search_tool
       - knowledge_search
+      - enterprise_knowledge_search
     max_turns: 3
     enable_plan_approval: true
     log_response_max_chars: 2000
@@ -128,6 +142,7 @@ functions:
     tools:
       - web_search_tool
       - knowledge_search
+      - enterprise_knowledge_search
     max_llm_turns: 10
     max_tool_iterations: 5
 
@@ -139,6 +154,7 @@ functions:
       - paper_search_tool
       - advanced_web_search_tool
       - knowledge_search
+      - enterprise_knowledge_search
 
 workflow:
   _type: chat_deepresearcher_agent
