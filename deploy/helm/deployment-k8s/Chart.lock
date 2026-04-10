@@ -1,0 +1,6 @@
+dependencies:
+- name: aiq
+  repository: file://../helm-charts-k8s/aiq
+  version: 0.0.4
+digest: sha256:c2a6d171c55f87773aa7218145b1d42fd163a35adbbed62371546cdd2dab2da0
+generated: "2026-04-09T23:47:50.161003-04:00"
